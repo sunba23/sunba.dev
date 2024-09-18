@@ -1,0 +1,4 @@
+.env
+venv/
+learningapp/db.sqlite3
+*pycache*
