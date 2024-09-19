@@ -2,3 +2,5 @@
 venv/
 learningapp/db.sqlite3
 *pycache*
+db-data/
+init.sql
