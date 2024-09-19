@@ -13,7 +13,7 @@ services:
   web:
     build: ./web
     volumes: 
-      - ./web:/usr/src/app
+      - ${PWD}/web:/usr/src/app
     ports:
       - 8000:8000
     networks:
@@ -27,8 +27,10 @@ services:
     ports:
       - 8080:8080
       - 50000:50000
+    privileged: true
+    user: root
     volumes:
-      - jenkins_data:/var/jenkins_home
+      - ${PWD}/jenkins_data:/var/jenkins_home
     networks:
       - django-network
 
