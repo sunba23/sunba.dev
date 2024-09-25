@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Checkout git') {
             steps {
-                git 'https://github.com/sunba23/learnlinux.git'
+                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                    git url: "https://sunba23:${GITHUB_TOKEN}@github.com/sunba23/learnlinux.git"
+                }
             }
         }
         stage('Build') {
