@@ -4,7 +4,6 @@ pipeline {
 	stage('Checkout git') {
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-		    sh 'rm -rf ./learnlinux'
                     sh 'git clone https://sunba23:$GITHUB_TOKEN@github.com/sunba23/learnlinux.git'
                 }
             }
