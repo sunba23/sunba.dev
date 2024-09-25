@@ -28,8 +28,6 @@ services:
       - 8080:8080
       - 50000:50000
     privileged: true
-    env_file:
-      - .env
     user: root
     volumes:
       - ${PWD}/jenkins_data:/var/jenkins_home
