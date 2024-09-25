@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse, HttpResponseForbidden, HttpResponseNotAllowed
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 import hashlib
 import hmac
@@ -19,6 +20,7 @@ def about(request):
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 
+@csrf_exempt
 def github_webhook(request):
     if request.method == "POST":
         signature_header = request.headers.get("X-Hub-Signature-256")
