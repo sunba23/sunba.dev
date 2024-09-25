@@ -23,11 +23,13 @@ services:
     depends_on:
       - db
   jenkins:
-    image: jenkins/jenkins:lts-jdk17
+    image: "jenkins/jenkins:lts-jdk17"
     ports:
       - 8080:8080
       - 50000:50000
     privileged: true
+    env_file:
+      - .env
     user: root
     volumes:
       - ${PWD}/jenkins_data:/var/jenkins_home
@@ -38,6 +40,7 @@ services:
     volumes:
       - ${PWD}/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt:/etc/letsencrypt
+      - ${PWD}/web/robots.txt:/usr/src/app/robots.txt
     ports:
       - 80:80
       - 443:443

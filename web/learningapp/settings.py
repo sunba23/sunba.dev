@@ -22,6 +22,9 @@ load_dotenv(dotenv_path)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+WEBHOOK_SECRET = os.getenv("GITHUB_WEBHOOK_SECRET")
+JENKINS_USER = os.getenv("JENKINS_USER")
+JENKINS_API_TOKEN = os.getenv("JENKINS_API_TOKEN")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

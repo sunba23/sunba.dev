@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout git') {
+            steps {
+                git 'https://github.com/sunba23/learnlinux.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'build simulation...'
+            }
+        }
+        stage('Notify GitHub') {
+            steps {
+                script {
+                    def status = currentBuild.currentResult == 'SUCCESS' ? 'success' : 'failure'
+                    def commitSha = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                        def response = sh(
+                            script: """
+                            curl -X POST \
+                                -H "Authorization: token \${GITHUB_TOKEN}" \
+                                -H "Accept: application/vnd.github.v3+json" \
+                                https://api.github.com/repos/sunba23/learnlinux/statuses/\${commitSha} \
+                                -d '{"state": "\${status}", "context": "Continuous Integration"}'
+                            """,
+                            returnStdout: true
+                        )
+                        echo "Response from GitHub: ${response}"
+                    }
+                }
+            }
+        }
+    }
+}
+
