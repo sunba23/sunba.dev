@@ -18,9 +18,7 @@ pipeline {
             steps {
                 script {
                     def status = currentBuild.currentResult == 'SUCCESS' ? 'success' : 'failure'
-		    echo "${status}"
                     def commitSha = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
-		    echo "${commitSha}"
 
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
 			def curlCommand = """
@@ -32,7 +30,6 @@ pipeline {
 			        https://api.github.com/repos/sunba23/learnlinux/statuses/${commitSha} \
 			        -d '{"state":"${status}","context":"continuous-integration/jenkins"}'
 			"""
-			echo "executing curl command: ${curlCommand}"
                         def response = sh(
                             script: curlCommand,
                             returnStdout: true
@@ -41,6 +38,18 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+    post {
+        always {
+            echo "Cleaning up the workspace..."
+            deleteDir()
+        }
+        success {
+            echo 'Job completed successfully!'
+        }
+        failure {
+            echo 'Job failed!'
         }
     }
 }
