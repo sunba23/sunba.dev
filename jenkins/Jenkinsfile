@@ -29,8 +29,8 @@ pipeline {
 			        -H "Accept: application/vnd.github+json" \
 			        -H "Authorization: Bearer \${GITHUB_TOKEN}" \
 			        -H "X-GitHub-Api-Version: 2022-11-28" \
-			        https://api.github.com/repos/sunba23/learnlinux/statuses/\${commitSha} \
-			        -d '{"state":"\${status}","context":"continuous-integration/jenkins"}'
+			        https://api.github.com/repos/sunba23/learnlinux/statuses/${commitSha} \
+			        -d '{"state":"${status}","context":"continuous-integration/jenkins"}'
 			"""
 			echo "executing curl command: ${curlCommand}"
                         def response = sh(
