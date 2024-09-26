@@ -35,7 +35,7 @@ def github_webhook(request):
     return HttpResponseNotAllowed("Invalid request method")
 
 def trigger_jenkins():
-    JENKINS_URL = 'http://jenkins:8080/job/testjob/build'
+    JENKINS_URL = 'http://jenkins:8080/job/simple-pipeline/build'
     JENKINS_USERNAME = JENKINS_USER
     JENKINS_TOKEN = JENKINS_API_TOKEN
 
