@@ -41,7 +41,7 @@ def trigger_jenkins():
 
     response = requests.post(
         JENKINS_URL,
-        auth=HTTPBasicAuth(JENKINS_USERNAME, JENKINS_TOKEN)
+        auth=requests.auth.HTTPBasicAuth(JENKINS_USERNAME, JENKINS_TOKEN)
     )
 
     if response.status_code == 201:
