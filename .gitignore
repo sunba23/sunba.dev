@@ -6,3 +6,5 @@ learningapp/db.sqlite3
 db-data/
 init.sql
 jenkins_data/
+frontend/node_modules/
+

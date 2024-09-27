@@ -14,8 +14,10 @@ RUN poetry install --no-cache
 
 COPY app app
 
+WORKDIR /usr/src/app/app
+
 RUN poetry install --no-cache
 
 EXPOSE 8000
 
-CMD ["poetry", "run", "app/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["poetry", "run", "daphne", "-p", "8000", "-b", "0.0.0.0", "app.asgi:application"]

@@ -46,6 +46,14 @@ services:
       - django-network
     depends_on:
       - web
+  frontend:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    networks:
+      - django-network
+    depends_on:
+     - web
 networks:
   django-network:
     driver: bridge

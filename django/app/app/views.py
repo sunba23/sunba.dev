@@ -11,12 +11,6 @@ WEBHOOK_SECRET = settings.WEBHOOK_SECRET
 JENKINS_USER = settings.JENKINS_USER
 JENKINS_API_TOKEN = settings.JENKINS_API_TOKEN
 
-def home(request):
-    return render(request, 'home.html')
-
-def about(request):
-    return render(request, 'about.html')
-
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 

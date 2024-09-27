@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [host.strip() for host in raw_allowed_hosts.split(",")]
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,9 +123,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-import os
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -144,3 +143,6 @@ LOGGING = {
         },
     },
 }
+
+ASGI_APPLICATION = "app.asgi.application"
+
