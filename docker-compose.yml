@@ -22,17 +22,6 @@ services:
       - .env
     depends_on:
       - db
-  jenkins:
-    image: "jenkins/jenkins:lts-jdk17"
-    ports:
-      - 8080:8080
-      - 50000:50000
-    privileged: true
-    user: root
-    volumes:
-      - ${PWD}/jenkins/jenkins_data:/var/jenkins_home
-    networks:
-      - django-network
   nginx:
     build: ./nginx
     volumes:
@@ -46,14 +35,27 @@ services:
       - django-network
     depends_on:
       - web
+  jenkins:
+    image: "jenkins/jenkins:lts-jdk17"
+    ports:
+      - 8080:8080
+      - 50000:50000
+    privileged: true
+    user: root
+    volumes:
+      - ${PWD}/jenkins/jenkins_data:/var/jenkins_home
+    networks:
+      - django-network
   frontend:
     build: ./frontend
     ports:
       - 3000:3000
+    volumes:
+      - ${PWD}/frontend:/app
     networks:
       - django-network
     depends_on:
-     - web
+      - web
 networks:
   django-network:
     driver: bridge
