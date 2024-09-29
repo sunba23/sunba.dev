@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npx", "http-server"]
+CMD ["npx", "http-server", "-p", "3000"]

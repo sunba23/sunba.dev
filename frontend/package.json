@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@xterm/xterm": "^5.5.0"
+    "@xterm/xterm": "^5.5.0",
+    "http-server": "^14.1.1"
   }
 }
