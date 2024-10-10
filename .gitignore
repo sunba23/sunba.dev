@@ -7,4 +7,4 @@ db-data/
 init.sql
 jenkins_data/
 frontend/node_modules/
-
+django/webfs/about/

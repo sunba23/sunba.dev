@@ -1,15 +1,4 @@
 services:
-  db:
-    image: 'postgres:16'
-    ports:
-      - 5432:5432
-    volumes:
-      - ${PWD}/postgres/db-data/:/var/lib/postgresql/data/
-      - ${PWD}/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    env_file:
-      - .env
-    networks:
-      - django-network
   web:
     build: ./django
     volumes: 
@@ -20,8 +9,6 @@ services:
       - django-network
     env_file:
       - .env
-    depends_on:
-      - db
   nginx:
     build: ./nginx
     volumes:
@@ -49,7 +36,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - 3000:3000
+      - 5173:5173
     volumes:
       - ${PWD}/frontend:/app
     networks:
