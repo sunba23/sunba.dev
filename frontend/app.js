@@ -39,12 +39,10 @@ term.loadAddon(fitAddon);
 if (terminalContainer) {
     term.open(terminalContainer);
     fitAddon.fit();
-    console.log('Terminal initialized and fitted to container');
-} else {
-    console.error('Terminal container not found');
 }
 
-const socket = new WebSocket('ws://192.168.1.14:8000/ws/terminal/');
+const socket = new WebSocket('wss://sunba.dev/ws/terminal/');
+
 
 socket.onopen = () => {
     term.writeln('Welcome to my terminal themed page.');

@@ -1,10 +1,16 @@
 import json
 import os
+import time
+from collections import deque
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../webfs'))
 
 class TerminalConsumer(AsyncWebsocketConsumer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.command_timestamps = deque(maxlen=5)
+
     async def connect(self):
         self.current_dir = BASE_DIR
         await self.accept()
@@ -17,6 +23,17 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         pass
 
     async def receive(self, text_data):
+        current_time = time.time()
+        self.command_timestamps.append(current_time)
+
+        if len(self.command_timestamps) >= 3 and (self.command_timestamps[-1] - self.command_timestamps[-3]) < 1:
+            await self.send(text_data=json.dumps({
+                'response': "oops! no spamming! you will get disconnected now.",
+                'current_dir': self.get_relative_path_display()
+            }))
+            await self.close()
+            return
+
         try:
             data = json.loads(text_data)
             command = data.get('command', '')
@@ -72,7 +89,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
 
         if os.path.isdir(new_path):
             self.current_dir = new_path
-            return ''
+            return ''  # No message on successful navigation
         else:
             return f'Directory not found: {path}'
 
