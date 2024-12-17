@@ -1,6 +1,6 @@
 services:
   web:
-    build: ./django
+    build: ./app
     volumes: 
       - ${PWD}/django:/usr/src/app
     ports:
