@@ -1,0 +1,13 @@
+- name: Install cert-manager on k3s
+  command: >
+    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.2/cert-manager.yaml
+  become_user: deploy
+
+- name: Wait for cert-manager to be ready
+  command: kubectl wait --for=condition=Ready pods -l app=cert-manager -n cert-manager --timeout=300s
+  become_user: deploy
+
+- name: Create ClusterIssuer for Let's Encrypt
+  kubectl_apply:
+    src: templates/cluster-issuer.yaml.j2
+  become_user: deploy

@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  tls:
+  - hosts:
+    - sunba.dev
+    secretName: sunba-prod-tls
+  rules:
+  - host: sunba.dev
