@@ -4,3 +4,4 @@
   roles:
     - k3s
     - user_permissions
+    - cert_manager

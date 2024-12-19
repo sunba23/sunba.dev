@@ -15,6 +15,7 @@
     state: present
     delay: 10
     timeout: 300
+  when: not ansible_check_mode
 
 - name: Create .kube directory for deploy user
   file:
@@ -30,3 +31,4 @@
     remote_src: yes
     owner: deploy
     group: deploy
+  when: not ansible_check_mode

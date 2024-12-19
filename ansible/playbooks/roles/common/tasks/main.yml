@@ -15,6 +15,7 @@
   authorized_key:
     user: deploy
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    path: "/home/deploy/.ssh/authorized_keys"
 
 - name: Disable swap
   command: swapoff -a
