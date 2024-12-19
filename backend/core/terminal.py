@@ -2,6 +2,7 @@ import os
 import time
 from collections import deque
 from fastapi import WebSocketDisconnect
+from config import settings
 
 class TerminalManager:
     def __init__(self, base_dir: str):

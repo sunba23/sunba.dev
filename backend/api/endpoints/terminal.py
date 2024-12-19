@@ -1,14 +1,20 @@
 from fastapi import APIRouter, WebSocket, Depends, WebSocketDisconnect
 from api.dependencies import get_terminal_manager
+from config import settings
+import logging
 
 router = APIRouter()
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 @router.websocket("/ws/terminal/")
 async def terminal_websocket(
     websocket: WebSocket,
     terminal=Depends(get_terminal_manager)
 ):
+    logger.debug("got terminal ws request, accept")
     await websocket.accept()
+    logger.debug(f"base dir is: {settings.base_dir}")
     
     await websocket.send_json({
         'response': "Connected to the terminal. Type 'help' for a list of commands.",
@@ -26,3 +32,7 @@ async def terminal_websocket(
             })
     except WebSocketDisconnect:
         pass
+
+@router.get("/ws/terminal")
+async def something():
+    return "hello!"

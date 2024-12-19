@@ -20,10 +20,4 @@ app.include_router(terminal.router)
 
 @app.exception_handler(404)
 async def custom_404_handler(request: Request, exc: HTTPException):
-    return JSONResponse(status_code=404, content={"message": "Not found"})
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    return JSONResponse(status_code=404, content={"message": "Not found :("})

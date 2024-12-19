@@ -41,8 +41,8 @@ if (terminalContainer) {
     fitAddon.fit();
 }
 
-const socket = new WebSocket('wss://sunba.dev/ws/terminal/');
-
+console.log("WebSocket URL:", import.meta.env.VITE_WS_URL);
+const socket = new WebSocket(`${import.meta.env.VITE_WS_URL}/ws/terminal/`);
 
 socket.onopen = () => {
     term.writeln('Welcome to my terminal themed page.');
