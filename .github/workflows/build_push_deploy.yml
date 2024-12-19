@@ -43,8 +43,8 @@ jobs:
       - name: Build and push FastAPI image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./backend/prod.Dockerfile
+          context: backend
+          file: prod.Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.FASTAPI_IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
@@ -53,8 +53,8 @@ jobs:
       - name: Build and push Nginx image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./nginx/prod.Dockerfile
+          context: nginx
+          file: prod.Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.NGINX_IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
