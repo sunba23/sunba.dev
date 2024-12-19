@@ -2,7 +2,7 @@ services:
   web:
     build: 
       context: backend
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
     volumes: 
       - ./backend:/app
     ports:

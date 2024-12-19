@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Terminal themed website"
 requires-python = ">=3.12"
 dependencies = [
+    "daphne>=4.1.2",
     "fastapi>=0.115.6",
     "pydantic-settings>=2.7.0",
     "pydantic>=2.10.3",
