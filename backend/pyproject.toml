@@ -1,0 +1,12 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "Terminal themed website"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.6",
+    "pydantic-settings>=2.7.0",
+    "pydantic>=2.10.3",
+    "requests>=2.32.3",
+    "uvicorn[standard]>=0.34.0",
+]

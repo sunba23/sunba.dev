@@ -1,0 +1,29 @@
+- name: Install system packages
+  apk:
+    name:
+      - sudo
+      - bash
+    state: present
+
+- name: Create deploy user
+  user:
+    name: deploy
+    shell: /bin/bash
+    create_home: yes
+
+- name: Set up SSH key for deploy user
+  authorized_key:
+    user: deploy
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    path: "/home/deploy/.ssh/authorized_keys"
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swapfree_mb > 0
+
+- name: Remove swap from fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+

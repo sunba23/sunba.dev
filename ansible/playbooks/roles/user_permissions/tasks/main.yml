@@ -1,0 +1,6 @@
+- name: Set up sudo for deploy user
+  lineinfile:
+    path: /etc/sudoers.d/deploy
+    line: "deploy ALL=(ALL) NOPASSWD: /usr/bin/kubectl"
+    create: yes
+    mode: 0440
