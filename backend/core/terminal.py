@@ -33,8 +33,6 @@ class TerminalManager:
             return self.print_working_directory()
         elif command == 'help':
             return self.get_help_message()
-        elif command == 'project':
-            return self.get_project_info()
         elif command.startswith('cat '):
             filename = command.split(' ', 1)[1]
             return self.read_file(filename)
@@ -84,20 +82,10 @@ class TerminalManager:
         else:
             return f'No such file: {filename}'
 
-    def get_project_info(self):
-        return [
-            {"backend": "Python, FastAPI, WebSockets, OS module"},
-            {"frontend": "HTML+css, xterm.js, Vite, WebSockets"},
-            {"infrastructure": "Docker, Docker compose, Nginx for deployment"},
-            {"CI": "Jenkins"}
-        ]
-
     def get_help_message(self):
         return [
-            {"command": "project", "description": "Display project information message"},
-            {"command": "ls", "description": "List files and directories"},
-            {"command": "cd", "description": "Change directory"},
-            {"command": "pwd", "description": "Print the current working directory"},
-            {"command": "cat <file>", "description": "Display the content of a file"},
-            {"command": "help", "description": "Display this help message"}
+            {"command": "ls", "description": "list files and directories"},
+            {"command": "cd", "description": "change directory"},
+            {"command": "pwd", "description": "print current working dir"},
+            {"command": "cat", "description": "print file contents"},
         ]

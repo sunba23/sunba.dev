@@ -12,9 +12,7 @@ async def terminal_websocket(
     websocket: WebSocket,
     terminal=Depends(get_terminal_manager)
 ):
-    logger.debug("got terminal ws request, accept")
     await websocket.accept()
-    logger.debug(f"base dir is: {settings.base_dir}")
     
     await websocket.send_json({
         'response': "Connected to the terminal. Type 'help' for a list of commands.",
