@@ -118,6 +118,7 @@ jobs:
               rm -rf $DEPLOY_DIR
               git clone $REPO_URL $DEPLOY_DIR
             else
+              echo "Directory exists. Resetting code to match origin"
               cd $DEPLOY_DIR
               git fetch origin ${{ github.ref_name }}
               git reset --hard origin/${{ github.ref_name }}
