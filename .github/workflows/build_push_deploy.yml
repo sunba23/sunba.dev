@@ -116,8 +116,36 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
-            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
+            rollback() {
+              echo "Deployment failed, rolling back..."
+              if [ -n "$NAMESPACE_CREATED" ]; then
+                sudo kubectl delete -f kubernetes/namespaces/${{ steps.env.outputs.env }}.yaml
+              fi
+              if [ -n "$BASE_DEPLOYED" ]; then
+                sudo kubectl delete -f kubernetes/base/ingress/
+                sudo kubectl delete -f kubernetes/base/services/
+                sudo kubectl delete -f kubernetes/base/deployments/
+              fi
+              if [ -n "$OVERLAY_DEPLOYED" ]; then
+                sudo kubectl delete -k kubernetes/overlays/${{ steps.env.outputs.env }}
+              fi
+              echo "Rollback completed"
+              exit 1
+            }
+
+            trap rollback ERR
+
+            sudo kubectl apply -f kubernetes/namespaces/${{ steps.env.outputs.env }}.yaml && NAMESPACE_CREATED=true
+
+            sudo kubectl apply -f kubernetes/base/deployments/ && \
+            sudo kubectl apply -f kubernetes/base/services/ && \
+            sudo kubectl apply -f kubernetes/base/ingress/ && BASE_DEPLOYED=true
+
+            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }} && OVERLAY_DEPLOYED=true
+
             sudo kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/nginx -n ${{ steps.env.outputs.env }}
+
+            trap - ERR
