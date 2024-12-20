@@ -8,6 +8,7 @@ spec:
       containers:
         - name: api
           image: ghcr.io/sunba23/sunbadev-nginx:staging
+          imagePullPolicy: Always
           env:
             - name: ENVIRONMENT
               value: "staging"
