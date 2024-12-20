@@ -132,7 +132,7 @@ jobs:
 
             trap rollback ERR
 
-            sudo kubectl apply -f kubernetes/namespaces/${{ steps.env.outputs.env }}.yaml && NAMESPACE_CREATED=true
+            sudo kubectl apply -f kubernetes/base/namespaces/${{ steps.env.outputs.env }}.yaml && NAMESPACE_CREATED=true
 
             sudo kubectl apply -f kubernetes/base/deployments/ && \
             sudo kubectl apply -f kubernetes/base/services/ && \
