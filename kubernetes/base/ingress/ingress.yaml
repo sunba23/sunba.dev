@@ -29,6 +29,8 @@ spec:
             name: fastapi-service
             port:
               number: 8000
+        annotations:
+          traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
       - path: /
         pathType: Prefix
         backend:
@@ -53,6 +55,8 @@ spec:
             name: fastapi-service
             port:
               number: 8000
+        annotations:
+          traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
       - path: /
         pathType: Prefix
         backend:
