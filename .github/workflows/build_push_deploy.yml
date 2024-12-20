@@ -101,7 +101,7 @@ jobs:
 
             if [ ! -d "$DEPLOY_DIR" ]; then
               echo "Directory doesn't exist, cloning repository..."
-              git clone $REPO_URL $DEPLOY_DIR
+              git clone --branch ${{ github.ref_name }} $REPO_URL $DEPLOY_DIR
             elif [ ! -d "$DEPLOY_DIR/.git" ]; then
               echo "Directory exists but is not a git repository..."
               rm -rf $DEPLOY_DIR
@@ -114,7 +114,6 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
-            tree
             rollback() {
               echo "Deployment failed, rolling back..."
               if [ -n "$NAMESPACE_CREATED" ]; then
