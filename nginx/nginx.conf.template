@@ -44,8 +44,13 @@ http {
     location / {
       root /usr/share/nginx/html;
       try_files $uri $uri/ /index.html;
+
+      location ~* \.js$ {
+        expires off;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+      }
       
-      location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+      location ~* \.(css|png|jpg|jpeg|gif|ico)$ {
         expires max;
         add_header Cache-Control "public, no-transform";
       }
