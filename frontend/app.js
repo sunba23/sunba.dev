@@ -46,6 +46,7 @@ if (terminalContainer) {
   term.writeln('\x1b[2m\x1b[33mAuthor: Franek Suszko - https://github.com/sunba23\x1b[0m');
 }
 
+console.log("WebSocket URL:", import.meta.env.VITE_WS_URL);
 const socket = new WebSocket(import.meta.env.VITE_WS_URL);
 
 socket.onopen = () => {
