@@ -116,8 +116,8 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
-            kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
-            kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
-            kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
-            kubectl rollout status deployment/api -n ${{ steps.env.outputs.env }}
-            kubectl rollout status deployment/nginx -n ${{ steps.env.outputs.env }}
+            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
+            sudo kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
+            sudo kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
+            sudo kubectl rollout status deployment/api -n ${{ steps.env.outputs.env }}
+            sudo kubectl rollout status deployment/nginx -n ${{ steps.env.outputs.env }}

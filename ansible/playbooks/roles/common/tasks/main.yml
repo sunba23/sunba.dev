@@ -40,3 +40,7 @@
     regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
     replace: '# \1'
 
+- name: Install git
+  package:
+    name: git
+    state: present
