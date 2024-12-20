@@ -113,25 +113,6 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
-            rollback() {
-              echo "Deployment failed, rolling back..."
-              if [ -n "$NAMESPACE_CREATED" ]; then
-                sudo kubectl delete -f kubernetes/base/namespaces/${{ steps.env.outputs.env }}.yaml
-              fi
-              if [ -n "$BASE_DEPLOYED" ]; then
-                sudo kubectl delete -f kubernetes/base/ingress/
-                sudo kubectl delete -f kubernetes/base/services/
-                sudo kubectl delete -f kubernetes/base/deployments/
-              fi
-              if [ -n "$OVERLAY_DEPLOYED" ]; then
-                sudo kubectl delete -k kubernetes/overlays/${{ steps.env.outputs.env }}
-              fi
-              echo "Rollback completed"
-              exit 1
-            }
-
-            trap rollback ERR
-
             sudo kubectl apply -f kubernetes/base/namespaces/${{ steps.env.outputs.env }}.yaml && NAMESPACE_CREATED=true
 
             sudo kubectl apply -f kubernetes/base/deployments/ && \
@@ -144,5 +125,3 @@ jobs:
             sudo kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/nginx -n ${{ steps.env.outputs.env }}
-
-            trap - ERR
