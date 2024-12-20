@@ -17,6 +17,14 @@
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     path: "/home/deploy/.ssh/authorized_keys"
 
+- name: Generate SSH key pair
+  openssh_keypair:
+    path: /home/deploy/.ssh/github_deploy_key
+    type: ed25519
+    owner: deploy
+    group: deploy
+    mode: '0600'
+
 - name: Disable swap
   command: swapoff -a
   when: ansible_swapfree_mb > 0

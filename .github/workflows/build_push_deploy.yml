@@ -96,8 +96,26 @@ jobs:
           username: deploy
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/sunbadev
-            git pull
+            REPO_URL=""
+            DEPLOY_DIR=~/sunbadev
+
+            if [ ! -d "$DEPLOY_DIR" ]; then
+              echo "Directory doesn't exist, cloning repository..."
+              git clone $REPO_URL $DEPLOY_DIR
+            elif [ ! -d "$DEPLOY_DIR/.git" ]; then
+              echo "Directory exists but is not a git repository..."
+              rm -rf $DEPLOY_DIR
+              git clone $REPO_URL $DEPLOY_DIR
+            else
+              cd $DEPLOY_DIR
+              git fetch
+
+              if [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
+                git reset --hard origin/$(git branch --show-current)
+              fi
+            fi
+
+            cd $DEPLOY_DIR
             kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
             kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
             kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
