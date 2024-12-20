@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/sunba23/sunbadev-nginx:latest
+          image: ghcr.io/sunba23/sunbadev-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
