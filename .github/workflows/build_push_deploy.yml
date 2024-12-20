@@ -114,6 +114,7 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
+            git pull
             rollback() {
               echo "Deployment failed, rolling back..."
               if [ -n "$NAMESPACE_CREATED" ]; then
