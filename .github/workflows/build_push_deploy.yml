@@ -97,7 +97,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             REPO_URL="https://github.com/sunba23/sunba.dev"
-            DEPLOY_DIR=/home/deploy/sunbadev
+            DEPLOY_DIR=/home/deploy/sunbadev-${{ steps.env.outputs.env }}
 
             if [ ! -d "$DEPLOY_DIR" ]; then
               echo "Directory doesn't exist, cloning repository..."
@@ -109,13 +109,12 @@ jobs:
             else
               cd $DEPLOY_DIR
               git fetch
-
-              if [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
-                git reset --hard origin/$(git branch --show-current)
-              fi
+              git checkout ${{ github.ref_name }}
+              git reset --hard origin/${{ github.ref_name }}
             fi
 
             cd $DEPLOY_DIR
+            tree
             rollback() {
               echo "Deployment failed, rolling back..."
               if [ -n "$NAMESPACE_CREATED" ]; then
