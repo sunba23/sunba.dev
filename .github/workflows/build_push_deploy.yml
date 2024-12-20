@@ -55,8 +55,19 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set environment variables
+        id: env_vars
+        run: |
+          if [ ${{ github.ref }} = 'refs/heads/main' ]; then
+            echo "DOMAIN=sunba.dev" >> $GITHUB_OUTPUT
+          else
+            echo "DOMAIN=staging.sunba.dev" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build frontend
         working-directory: frontend
+        env:
+          VITE_WS_URL: wss://${{ steps.env_vars.outputs.DOMAIN }}/ws/terminal/
         run: |
           npm ci
           npm run build
@@ -69,7 +80,7 @@ jobs:
           file: nginx/prod.Dockerfile
           push: true
           build-args: |
-            DOMAIN=${{ steps.meta.outputs.env == 'prod' && 'sunba.dev' || 'staging.sunba.dev' }}
+            DOMAIN=${{ steps.env_vars.outputs.DOMAIN }}
           tags: |
             ${{ env.REGISTRY }}/${{ env.NGINX_IMAGE_NAME }}:${{ steps.meta.outputs.tag }}
             ${{ env.REGISTRY }}/${{ env.NGINX_IMAGE_NAME }}:latest

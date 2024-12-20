@@ -18,6 +18,4 @@ RUN envsubst '${DOMAIN}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.con
 
 EXPOSE 80
 
-ENV VITE_WS_URL=wss://${DOMAIN}/ws/terminal/
-
 CMD ["nginx", "-g", "daemon off;"]
