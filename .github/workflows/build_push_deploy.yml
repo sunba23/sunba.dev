@@ -117,7 +117,7 @@ jobs:
             rollback() {
               echo "Deployment failed, rolling back..."
               if [ -n "$NAMESPACE_CREATED" ]; then
-                sudo kubectl delete -f kubernetes/namespaces/${{ steps.env.outputs.env }}.yaml
+                sudo kubectl delete -f kubernetes/base/namespaces/${{ steps.env.outputs.env }}.yaml
               fi
               if [ -n "$BASE_DEPLOYED" ]; then
                 sudo kubectl delete -f kubernetes/base/ingress/
