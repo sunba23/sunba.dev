@@ -96,8 +96,8 @@ jobs:
           username: deploy
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            REPO_URL=""
-            DEPLOY_DIR=~/sunbadev
+            REPO_URL="https://github.com/sunba23/sunba.dev"
+            DEPLOY_DIR=/home/deploy/sunbadev
 
             if [ ! -d "$DEPLOY_DIR" ]; then
               echo "Directory doesn't exist, cloning repository..."

@@ -32,3 +32,11 @@
     owner: deploy
     group: deploy
   when: not ansible_check_mode
+
+- name: Configure sudo access for kubectl
+  lineinfile:
+    path: /etc/sudoers.d/deploy-kubectl
+    line: "deploy ALL=(ALL) NOPASSWD: /usr/local/bin/kubectl"
+    create: yes
+    mode: 0440
+    validate: /usr/sbin/visudo -cf %s
