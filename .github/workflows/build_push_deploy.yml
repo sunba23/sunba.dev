@@ -113,13 +113,7 @@ jobs:
             fi
 
             cd $DEPLOY_DIR
-            sudo kubectl apply -f kubernetes/base/namespaces/${{ steps.env.outputs.env }}.yaml && NAMESPACE_CREATED=true
-
-            sudo kubectl apply -f kubernetes/base/deployments/ && \
-            sudo kubectl apply -f kubernetes/base/services/ && \
-            sudo kubectl apply -f kubernetes/base/ingress/ && BASE_DEPLOYED=true
-
-            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }} && OVERLAY_DEPLOYED=true
+            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
 
             sudo kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
