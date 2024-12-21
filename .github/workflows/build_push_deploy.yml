@@ -73,7 +73,7 @@ jobs:
           npm ci
           npm run clean
           npm run build
-          rm -rf ../nginx/dist/*
+          [ -d "../nginx/dist" ] && rm -rf ../nginx/dist/*
           mv dist ../nginx/
 
       - name: Build and push Nginx image
