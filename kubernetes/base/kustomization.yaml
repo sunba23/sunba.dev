@@ -7,4 +7,3 @@ resources:
   - services/fastapi.yaml
   - services/nginx.yaml
   - ingress/ingress.yaml
-  - traefik-config.yaml
