@@ -10,3 +10,4 @@ patches:
   - path: patches/fastapi-resources.yaml
   - path: patches/nginx-resources.yaml
   - path: patches/ingress-resources.yaml
+  - path: patches/traefik-patch.yaml

@@ -31,6 +31,6 @@ async def terminal_websocket(
     except WebSocketDisconnect:
         pass
 
-@router.get("/ws/terminal")
+@router.get("/api/hello")
 async def something():
     return "hello!"
