@@ -1,12 +1,13 @@
-apiVersion: helm.cattle.io/v1
-kind: HelmChartConfig
+apiVersion: apps/v1
+kind: DaemonSet
 metadata:
   name: traefik
   namespace: kube-system
 spec:
-  valuesContent: |-
-    providers:
-      kubernetesCRD:
-        namespaces:
-          - default
-          - staging
+  template:
+    spec:
+      containers:
+        - name: traefik
+          args:
+            - --providers.kubernetesingress.ingressclass=traefik
+            - --providers.kubernetesingress.namespaces=default,staging
