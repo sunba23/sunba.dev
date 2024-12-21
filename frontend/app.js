@@ -36,6 +36,7 @@ const terminalContainer = document.getElementById('terminal-container');
 
 const fitAddon = new FitAddon();
 term.loadAddon(fitAddon);
+console.log("test-log-2");
 
 if (terminalContainer) {
   term.open(terminalContainer);
