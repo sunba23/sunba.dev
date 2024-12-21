@@ -71,7 +71,6 @@ jobs:
           VITE_WS_URL: wss://${{ steps.env_vars.outputs.DOMAIN }}/ws/terminal/
         run: |
           npm ci
-          npm run clean
           npm run build
           [ -d "../nginx/dist" ] && rm -rf ../nginx/dist/*
           mv dist ../nginx/
