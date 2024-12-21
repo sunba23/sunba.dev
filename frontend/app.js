@@ -48,6 +48,7 @@ if (terminalContainer) {
 
 console.log("WebSocket URL:", import.meta.env.VITE_WS_URL);
 const socket = new WebSocket(import.meta.env.VITE_WS_URL);
+console.log("test_log_abc");
 
 socket.onopen = () => {
   prompt();
