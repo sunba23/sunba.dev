@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik-sunbadev-prod
 spec:
   tls:
   - hosts:
@@ -9,3 +11,9 @@ spec:
     secretName: sunba-prod-tls
   rules:
   - host: sunba.dev
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: traefik-sunbadev
+  name: traefik-sunbadev-prod

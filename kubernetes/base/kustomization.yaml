@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - deployments/api.yaml
   - deployments/nginx.yaml
+  - deployments/traefik.yaml
   - services/fastapi.yaml
   - services/nginx.yaml
-  - ingress/ingress.yaml
+  - services/traefik.yaml
+  - ingress/traefik.yaml
+  - ingressclass/traefik.yaml

@@ -6,12 +6,16 @@
     KUBECONFIG: /home/deploy/.kube/config
   when: not ansible_check_mode
 
-- name: Wait for cert-manager to be ready
-  command: kubectl wait --for=condition=Ready pods -l app=cert-manager -n cert-manager --timeout=300s
+- name: Wait for cert-manager components to be ready
+  command: kubectl wait --for=condition=Ready pods -l '{{ item }}' -n cert-manager --timeout=300s
   become_user: deploy
   environment:
     KUBECONFIG: /home/deploy/.kube/config
   when: not ansible_check_mode
+  loop:
+    - 'app=cert-manager'
+    - 'app=webhook'
+    - 'app=cainjector'
 
 - name: Template out cluster issuer
   template:

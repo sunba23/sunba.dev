@@ -2,9 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web-ingress
-  namespace: staging
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: traefik-sunbadev
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:

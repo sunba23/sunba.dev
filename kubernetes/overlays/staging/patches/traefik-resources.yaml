@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-sunbadev
+spec:
+  template:
+    spec:
+      containers:
+        - name: traefik
+          args:
+            - --providers.kubernetes.namespaces=staging
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-sunbadev
+spec:
+  ports:
+    - name: web
+      port: 8001
+    - name: websecure
+      port: 8443
