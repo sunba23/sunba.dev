@@ -10,7 +10,6 @@ spec:
           args:
             - --api.dashboard=true
             - --providers.kubernetes.ingress=true
-            - --providers.kubernetes=true
             - --providers.kubernetes.namespaces=staging
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443

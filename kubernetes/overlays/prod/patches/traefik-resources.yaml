@@ -9,7 +9,6 @@ spec:
         - name: traefik
           args:
             - --api.dashboard=true
-            - --providers.kubernetes=true
             - --providers.kubernetes.namespaces=prod
             - --providers.kubernetes.ingress=true
             - --entrypoints.web.address=:8001
