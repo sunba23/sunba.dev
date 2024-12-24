@@ -133,9 +133,8 @@ jobs:
             sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
 
             sudo kubectl rollout restart deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
-            sudo kubectl rollout status deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
-
             sudo kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout restart deployment/nginx -n ${{ steps.env.outputs.env }}
+            sudo kubectl rollout status deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/api -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout status deployment/nginx -n ${{ steps.env.outputs.env }}

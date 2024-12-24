@@ -9,10 +9,12 @@ spec:
         - name: traefik
           args:
             - --api.dashboard=true
+            - --providers.kubernetes.ingress=true
             - --providers.kubernetes=true
             - --providers.kubernetes.namespaces=staging
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
+            - --providers.kubernetes.ingressclass=traefik-sunbadev-staging
 ---
 apiVersion: v1
 kind: Service

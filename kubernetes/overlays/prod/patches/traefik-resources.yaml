@@ -11,8 +11,10 @@ spec:
             - --api.dashboard=true
             - --providers.kubernetes=true
             - --providers.kubernetes.namespaces=prod
+            - --providers.kubernetes.ingress=true
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
+            - --providers.kubernetes.ingressclass=traefik-sunbadev-prod
 ---
 apiVersion: v1
 kind: Service
