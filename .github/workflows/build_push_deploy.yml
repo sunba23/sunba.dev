@@ -44,7 +44,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: backend
-          no-cache: true
           file: backend/prod.Dockerfile
           push: true
           tags: |
@@ -80,7 +79,6 @@ jobs:
         with:
           context: nginx
           file: nginx/prod.Dockerfile
-          no-cache: true
           push: true
           build-args: |
             DOMAIN=${{ steps.env_vars.outputs.DOMAIN }}
@@ -108,7 +106,6 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP }}
           username: deploy
-          no-cache: true
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             REPO_URL="https://github.com/sunba23/sunba.dev"

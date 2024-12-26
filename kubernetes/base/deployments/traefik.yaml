@@ -16,12 +16,12 @@ spec:
         - name: traefik
           image: traefik:v2.10
           args:
-            - --api.dashboard=true
-            - --providers.kubernetes.ingress=true
-            - --providers.kubernetes.namespaces=staging
+            - --api=true
+            - --providers.kubernetesingress=true
+            - --providers.kubernetesCRD.namespaces=staging
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
-            - --providers.kubernetes.ingressClassNames=traefik-sunbadev-staging
+            - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-staging
           ports:
             - name: web
               containerPort: 8001

@@ -8,12 +8,11 @@ spec:
       containers:
         - name: traefik
           args:
-            - --api.dashboard=true
-            - --providers.kubernetes.namespaces=prod
-            - --providers.kubernetes.ingress=true
+            - --api=true
+            - --providers.kubernetesingress=true
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
-            - --providers.kubernetes.ingressClassNames=traefik-sunbadev-prod
+            - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-prod
 ---
 apiVersion: v1
 kind: Service
