@@ -4,7 +4,7 @@ metadata:
   name: web-ingress
   annotations:
     kubernetes.io/ingress.class: traefik-sunbadev
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:

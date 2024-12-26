@@ -18,7 +18,6 @@ spec:
           args:
             - --api=true
             - --providers.kubernetesingress=true
-            - --providers.kubernetesCRD.namespaces=staging
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
             - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-staging
