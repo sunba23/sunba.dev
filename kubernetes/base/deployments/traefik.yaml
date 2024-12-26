@@ -21,7 +21,7 @@ spec:
             - --providers.kubernetes.namespaces=staging
             - --entrypoints.web.address=:8001
             - --entrypoints.websecure.address=:8443
-            - --providers.kubernetes.ingressclass=traefik-sunbadev-staging
+            - --providers.kubernetes.ingressClassNames=traefik-sunbadev-staging
           ports:
             - name: web
               containerPort: 8001
