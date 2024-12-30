@@ -12,6 +12,7 @@ spec:
       labels:
         app: traefik-sunbadev
     spec:
+      serviceAccountName: default
       containers:
         - name: traefik
           image: traefik:v2.10
