@@ -5,7 +5,7 @@ metadata:
   name: traefik-role-binding-staging
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: traefik-sunbadev
   namespace: staging
 roleRef:
   kind: ClusterRole
@@ -18,7 +18,7 @@ metadata:
   name: traefik-role-binding-prod
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: traefik-sunbadev
   namespace: prod
 roleRef:
   kind: ClusterRole
