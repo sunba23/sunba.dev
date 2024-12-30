@@ -10,3 +10,5 @@ resources:
   - services/traefik.yaml
   - ingress/traefik.yaml
   - ingressclass/traefik.yaml
+  - clusterrole/traefikrole.yaml
+  - clusterrolebinding/traefikbinding.yaml
