@@ -6,6 +6,7 @@ metadata:
     kubernetes.io/ingress.class: traefik-sunbadev-staging
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  ingressClassName: traefik-sunbadev-staging
   tls:
   - hosts:
     - staging.sunba.dev
