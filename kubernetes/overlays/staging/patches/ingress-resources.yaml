@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: web-ingress
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    # want staging.sunba.dev to be available to public for user tests
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: traefik-sunbadev-staging
   tls:
