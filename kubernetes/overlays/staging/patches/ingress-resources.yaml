@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: web-ingress
+  namespace: staging
   annotations:
     kubernetes.io/ingress.class: traefik-sunbadev-staging
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
