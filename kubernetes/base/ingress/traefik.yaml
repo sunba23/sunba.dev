@@ -3,10 +3,11 @@ kind: Ingress
 metadata:
   name: web-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik-sunbadev
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
     traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
 spec:
+  ingressClassName: traefik-sunbadev
   tls:
   - hosts:
     - sunba.dev
@@ -30,8 +31,6 @@ spec:
             name: fastapi-service
             port:
               number: 8000
-        annotations:
-          traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
       - path: /
         pathType: Prefix
         backend:
@@ -56,8 +55,6 @@ spec:
             name: fastapi-service
             port:
               number: 8000
-        annotations:
-          traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
       - path: /
         pathType: Prefix
         backend:

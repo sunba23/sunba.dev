@@ -4,7 +4,6 @@ metadata:
   name: web-ingress
   namespace: staging
   annotations:
-    kubernetes.io/ingress.class: traefik-sunbadev-staging
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   ingressClassName: traefik-sunbadev-staging
