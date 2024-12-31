@@ -6,11 +6,11 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 8001
+      targetPort: 80
       protocol: TCP
       name: web
     - port: 443
-      targetPort: 8443
+      targetPort: 443
       protocol: TCP
       name: websecure
   selector:

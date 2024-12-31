@@ -19,11 +19,11 @@ spec:
           args:
             - --api=true
             - --providers.kubernetesingress=true
-            - --entrypoints.web.address=:8001
-            - --entrypoints.websecure.address=:8443
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
             - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-staging
           ports:
             - name: web
-              containerPort: 8001
+              containerPort: 80
             - name: websecure
-              containerPort: 8443
+              containerPort: 443
