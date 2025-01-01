@@ -5,9 +5,9 @@ namespace: staging
 resources:
   - namespace.yaml
   - ../../base
+  - ingress-stuff.yaml
 
 patches:
   - path: patches/fastapi-resources.yaml
   - path: patches/nginx-resources.yaml
-  - path: patches/ingress-resources.yaml
   - path: patches/traefik-resources.yaml
