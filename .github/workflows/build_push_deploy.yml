@@ -127,19 +127,19 @@ jobs:
 
             cd $DEPLOY_DIR
 
+            # apply cluster-wide stuff:
+            sudo kubectl apply -f kubernetes/clusterwide/clusterissuer.yaml
+            sudo kubectl apply -f kubernetes/clusterwide/clusterrole.yaml
+            sudo kubectl apply -f kubernetes/clusterwide/rolebinding.yaml
+
             # apply namespace
-            sudo kubectl apply -f kubernetes/overlays/${{ steps.env.outputs.env }}/namespace.yaml
+            sudo kubectl apply -f kubernetes/environments/${{ steps.env.outputs.env }}/namespace.yaml
 
-            # apply base resources
-            if ! kubectl get ingressclass traefik-sunbadev-prod &>/dev/null; then
-              sudo kubectl apply -f kubernetes/base/deployments/
-              sudo kubectl apply -f kubernetes/base/services/
-              sudo kubectl apply -f kubernetes/base/clusterrole/
-              sudo kubectl apply -f kubernetes/base/clusterrolebinding/
-            fi
-
-            # apply patches
-            sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
+            # apply resources
+            sudo kubectl apply -f kubernetes/environments/${{ steps.env.outputs.env }}/api-resources.yaml -n ${{ steps.env.outputs.env }}
+            sudo kubectl apply -f kubernetes/environments/${{ steps.env.outputs.env }}/nginx-resources.yaml -n ${{ steps.env.outputs.env }}
+            sudo kubectl apply -f kubernetes/environments/${{ steps.env.outputs.env }}/traefik-resources.yaml -n ${{ steps.env.outputs.env }}
+            sudo kubectl apply -f kubernetes/environments/${{ steps.env.outputs.env }}/ingress-stuff.yaml -n ${{ steps.env.outputs.env }}
 
             sudo kubectl rollout restart deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
             sudo kubectl rollout restart deployment/api -n ${{ steps.env.outputs.env }}

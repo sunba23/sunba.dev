@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: traefik-sunbadev
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: traefik-sunbadev
@@ -14,6 +15,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: traefik
+          image: traefik:v2.10
           args:
             - --api=true
             - --providers.kubernetesingress=true
