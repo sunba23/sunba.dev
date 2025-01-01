@@ -127,7 +127,18 @@ jobs:
 
             cd $DEPLOY_DIR
 
+            # apply namespace
             sudo kubectl apply -f kubernetes/overlays/${{ steps.env.outputs.env }}/namespace.yaml
+
+            # apply base resources
+            if ! kubectl get ingressclass traefik-sunbadev-prod &>/dev/null; then
+              sudo kubectl apply -f kubernetes/base/deployments/
+              sudo kubectl apply -f kubernetes/base/services/
+              sudo kubectl apply -f kubernetes/base/clusterrole/
+              sudo kubectl apply -f kubernetes/base/clusterrolebinding/
+            fi
+
+            # apply patches
             sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
 
             sudo kubectl rollout restart deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
