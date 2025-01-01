@@ -3,7 +3,13 @@ kind: Deployment
 metadata:
   name: traefik-sunbadev
 spec:
+  selector:
+    matchLabels:
+      app: traefik-sunbadev
   template:
+    metadata:
+      labels:
+        app: traefik-sunbadev
     spec:
       serviceAccountName: default
       containers:
@@ -13,7 +19,12 @@ spec:
             - --providers.kubernetesingress=true
             - --entrypoints.web.address=:80
             - --entrypoints.websecure.address=:443
-            - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-prod
+            - --providers.kubernetesingress.ingressclass=traefik-sunbadev-prod
+          ports:
+            - name: web
+              containerPort: 80
+            - name: websecure
+              containerPort: 443
 ---
 apiVersion: v1
 kind: Service
