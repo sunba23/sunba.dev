@@ -4,8 +4,8 @@ metadata:
   name: web-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
+    #traefik.ingress.kubernetes.io/router.tls: "true"
+    #traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
