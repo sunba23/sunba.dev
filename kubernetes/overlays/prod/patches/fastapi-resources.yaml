@@ -9,6 +9,7 @@ spec:
       containers:
         - name: api
           image: ghcr.io/sunba23/sunbadev-api:prod
+          imagePullPolicy: Always
           env:
             - name: ENVIRONMENT
               value: "production"

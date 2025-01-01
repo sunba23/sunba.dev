@@ -11,8 +11,8 @@ spec:
           args:
             - --api=true
             - --providers.kubernetesingress=true
-            - --entrypoints.web.address=:8001
-            - --entrypoints.websecure.address=:8443
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
             - --providers.kubernetesIngress.ingressClass=traefik-sunbadev-prod
 ---
 apiVersion: v1
@@ -20,8 +20,13 @@ kind: Service
 metadata:
   name: traefik-sunbadev
 spec:
+  type: LoadBalancer
+  selector:
+    app: traefik-sunbadev
   ports:
     - name: web
-      port: 8001
+      port: 80
+      targetPort: 80
     - name: websecure
-      port: 8443
+      port: 443
+      targetPort: 443
