@@ -2,7 +2,7 @@ name: Build and push
 
 on:
   push:
-    branches: [ main, staging ]
+    branches: [ master , staging ]
 
 env:
   REGISTRY: ghcr.io
@@ -32,7 +32,7 @@ jobs:
       - name: Extract metadata for Docker
         id: meta
         run: |
-          if [ ${{ github.ref }} = 'refs/heads/main' ]; then
+          if [ ${{ github.ref }} = 'refs/heads/master' ]; then
             echo "tag=prod" >> $GITHUB_OUTPUT
             echo "env=prod" >> $GITHUB_OUTPUT
           else
@@ -58,7 +58,7 @@ jobs:
       - name: Set environment variables
         id: env_vars
         run: |
-          if [ ${{ github.ref }} = 'refs/heads/main' ]; then
+          if [ ${{ github.ref }} = 'refs/heads/master' ]; then
             echo "DOMAIN=sunba.dev" >> $GITHUB_OUTPUT
           else
             echo "DOMAIN=staging.sunba.dev" >> $GITHUB_OUTPUT
@@ -95,7 +95,7 @@ jobs:
       - name: Set environment
         id: env
         run: |
-          if [ ${{ github.ref }} = 'refs/heads/main' ]; then
+          if [ ${{ github.ref }} = 'refs/heads/master' ]; then
             echo "env=prod" >> $GITHUB_OUTPUT
           else
             echo "env=staging" >> $GITHUB_OUTPUT
