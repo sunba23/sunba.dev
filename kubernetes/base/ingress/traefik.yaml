@@ -1,8 +1,0 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: web-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/service.websecure.protocol: websocket

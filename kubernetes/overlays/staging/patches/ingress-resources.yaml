@@ -5,6 +5,8 @@ metadata:
   annotations:
     # want staging.sunba.dev to be available to public for user tests
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
 spec:
   ingressClassName: traefik-sunbadev-staging
   tls:
@@ -42,5 +44,3 @@ apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
   name: traefik-sunbadev-staging
-spec:
-  controller: traefik.io/ingress-controller
