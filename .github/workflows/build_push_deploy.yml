@@ -127,6 +127,9 @@ jobs:
 
             cd $DEPLOY_DIR
 
+            if ! kubectl get -f kubernetes/base/ &>/dev/null; then
+              sudo kubectl apply -f kubernetes/base/
+            fi
             sudo kubectl apply -k kubernetes/overlays/${{ steps.env.outputs.env }}
 
             sudo kubectl rollout restart deployment/traefik-sunbadev -n ${{ steps.env.outputs.env }}
