@@ -8,7 +8,6 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/service.websecure.protocol: websocket
     traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik-sunbadev-staging
   tls:
