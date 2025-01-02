@@ -58,4 +58,4 @@ The project is deployed with:
 - GitHub Actions for CI/CD, as well as optional locally hosted Jenkins.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT/X11 License - see the [LICENSE](LICENSE) file for details.
