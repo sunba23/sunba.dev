@@ -60,14 +60,16 @@ jobs:
         run: |
           if [ ${{ github.ref }} = 'refs/heads/master' ]; then
             echo "DOMAIN=sunba.dev" >> $GITHUB_OUTPUT
+            echo "WS_DOMAIN=sunba.dev" >> $GITHUB_OUTPUT
           else
             echo "DOMAIN=staging.sunba.dev" >> $GITHUB_OUTPUT
+          echo "WS_DOMAIN=staging.sunba.dev:8443" >> $GITHUB_OUTPUT
           fi
 
       - name: Build frontend
         working-directory: frontend
         env:
-          VITE_WS_URL: wss://${{ steps.env_vars.outputs.DOMAIN }}/ws/terminal/
+          VITE_WS_URL: wss://${{ steps.env_vars.outputs.WS_DOMAIN }}/ws/terminal/
         run: |
           npm ci
           npm run build
