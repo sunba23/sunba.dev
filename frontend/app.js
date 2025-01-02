@@ -41,7 +41,7 @@ console.log("test-log-2");
 if (terminalContainer) {
   term.open(terminalContainer);
   fitAddon.fit();
-  term.writeln('\x1b[1m\x1b[34msunba.dev\x1b[0m');
+  term.writeln('\x1b[1m\x1b[34msunba.dev - staging version! for fun and user testing.\x1b[0m');
   term.writeln('\x1b[5m\x1b[33mServer node: GMKtec NucBox G3 | Alpine Linux\x1b[0m');
   term.writeln('\x1b[2m\x1b[33mMade with: Xterm.js, FastAPI+daphne[websockets], Kubernetes (k3s), Ansible\x1b[0m');
   term.writeln('\x1b[2m\x1b[33mAuthor: Franek Suszko - https://github.com/sunba23\x1b[0m');
@@ -49,7 +49,6 @@ if (terminalContainer) {
 
 console.log("WebSocket URL:", import.meta.env.VITE_WS_URL);
 const socket = new WebSocket(import.meta.env.VITE_WS_URL);
-console.log("test_log_abc");
 
 socket.onopen = () => {
   prompt();

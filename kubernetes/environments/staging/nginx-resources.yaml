@@ -2,16 +2,32 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  labels:
+    app: nginx
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
   template:
+    metadata:
+      labels:
+        app: nginx
     spec:
       containers:
         - name: nginx
           image: ghcr.io/sunba23/sunbadev-nginx:staging
           imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+            - containerPort: 443
           env:
             - name: ENVIRONMENT
               value: "staging"
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service

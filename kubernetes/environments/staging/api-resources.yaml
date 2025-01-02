@@ -2,16 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
+  namespace: staging
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
   template:
     spec:
       containers:
         - name: api
           image: ghcr.io/sunba23/sunbadev-api:staging
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
           env:
             - name: ENVIRONMENT
               value: "staging"
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
