@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/sunba23/sunba.dev/actions/workflows/build_push_deploy.yml/badge.svg)](https://github.com/sunba23/sunba.dev/actions/workflows/build_push_deploy.yml)
-[![Last Commit](https://img.shields.io/github/last-commit/sunba23/sunba.dev)](https://github.com/sunba23/sunba.dev/commits/main)
-[![License](https://img.shields.io/badge/License-MIT%2FX11-blue.svg)](https://github.com/sunba23/sunba.dev/blob/main/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/sunba23/sunba.dev)](https://github.com/sunba23/sunba.dev/commits/master)
+[![License](https://img.shields.io/badge/License-MIT%2FX11-blue.svg)](https://github.com/sunba23/sunba.dev/blob/master/LICENSE)
 
 # sunba.dev
 A terminal-style extremely overengineered personal website that allows exploring information about me through an interactive CLI. Hosted 100% locally on [bare metal](https://www.gmktec.com/products/nucbox-g3-most-cost-effective-mini-pc-with-intel-n100-processor).
