@@ -30,6 +30,10 @@ spec:
               containerPort: 80
             - name: websecure
               containerPort: 443
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
 ---
 apiVersion: v1
 kind: Service
