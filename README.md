@@ -3,12 +3,16 @@
 [![License](https://img.shields.io/badge/License-MIT%2FX11-blue.svg)](https://github.com/sunba23/sunba.dev/blob/master/LICENSE)
 
 # sunba.dev
-A terminal-style extremely overengineered personal website that allows exploring information about me through an interactive CLI. Hosted 100% locally on [bare metal](https://www.gmktec.com/products/nucbox-g3-most-cost-effective-mini-pc-with-intel-n100-processor).
+A terminal-style personal website. Hosted locally!
+
+> [!WARNING]  
+> Please note:
+> staging site is down because I need RAM for other hosted stuff :)
 
 ## Product
 Try it out yourself!
 - main site: [sunba.dev](https://sunba.dev)
-- staging site: [staging.sunba.dev](https://staging.sunba.dev:8443)
+- ~~staging site: [staging.sunba.dev](https://staging.sunba.dev:8443)~~
 
 ## Tech Stack
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -32,9 +36,8 @@ Site:
 
 Backend and DevOps aspects for better developer and user experience:
 - Maintainability and extendability with clear, modular and easy to understand separation between resources
-- Ease of testing with local dev as well as [staging site](https://staging.sunba.dev:8443)
+- Ease of testing with local dev ~~as well as [staging site](https://staging.sunba.dev:8443)~~
 - Fully automated deployments with best CI/CD practices
-- High availability
 
 ## Local Development
 
@@ -54,7 +57,7 @@ Access the development site at `http://localhost:3000`
 The project is deployed with:
 - Ansible for infrastructure setup automation
 - K3s Kubernetes single-node cluster
-- Traefik as the ingress controller for each environment (staging, prod)
+- Traefik as the ingress controller for each environment (~~staging~~, prod)
 - GitHub Actions for CI/CD, as well as optional locally hosted Jenkins.
 
 ## License
