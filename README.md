@@ -3,16 +3,7 @@
 [![License](https://img.shields.io/badge/License-MIT%2FX11-blue.svg)](https://github.com/sunba23/sunba.dev/blob/master/LICENSE)
 
 # sunba.dev
-A terminal-style personal website. Hosted locally!
-
-> [!WARNING]  
-> Please note:
-> staging site is down because I need RAM for other hosted stuff :)
-
-## Product
-Try it out yourself!
-- main site: [sunba.dev](https://sunba.dev)
-- ~~staging site: [staging.sunba.dev](https://staging.sunba.dev:8443)~~
+A terminal-style personal website
 
 ## Tech Stack
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
